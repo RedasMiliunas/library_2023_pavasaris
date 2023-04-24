@@ -45,4 +45,4 @@ class BookInstance(models.Model):
     status = models.CharField(verbose_name="Busena", max_length=1, choices=LOAN_STATUS, blank=True, default='a')
 
     def __str__(self):
-        return f'{self.uuid} ({self.due_back}) - {self.status}'
+        return f'{self.book.title} {self.uuid} ({self.due_back}) - {self.status}'
