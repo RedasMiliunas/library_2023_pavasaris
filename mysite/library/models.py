@@ -38,3 +38,4 @@ class BookInstance(models.Model):
     )
 
     status = models.CharField(verbose_name="Busena", max_length=1, choices=LOAN_STATUS, blank=True, default='a')
+
