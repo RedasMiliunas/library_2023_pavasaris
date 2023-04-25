@@ -6,7 +6,9 @@ from . import models
 
 class BooksInstanceInline(admin.TabularInline):
     model = models.BookInstance
-    extra = 0   #isjungia papildomas tuscias eilutes
+    extra = 0   #isjungia papildomas tuscias eilutes, kad nepridetu tusciu irasu papildomai
+    readonly_fields = ['uuid']      #jeigu norim, kad kazkuris laukas nebutu galimas redaguoti
+    # can_delete = False          # jeigu norim padaryti, kad per ta psl neitu istrinti irasu
 
 class BookAdmin(admin.ModelAdmin):
     list_display = ['title', 'isbn', 'author', 'display_genre']
