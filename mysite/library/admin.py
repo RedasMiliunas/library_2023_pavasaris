@@ -4,8 +4,14 @@ from . import models
 # reikia sukurti admin klase, kurioje nustatysime
 # kaip norime pagal savo poreikius, kaip bus atvaizduotas koks nors rodinys
 
+class BooksInstanceInline(admin.TabularInline):
+    model = models.BookInstance
+    extra = 0   #isjungia papildomas tuscias eilutes
+
 class BookAdmin(admin.ModelAdmin):
     list_display = ['title', 'isbn', 'author', 'display_genre']
+    #pridedam eilute cia del inline dalyko:
+    inlines = [BooksInstanceInline]
 
 class BookInstanceAdmin(admin.ModelAdmin):
     list_display = ['uuid', 'book', 'status', 'due_back']
@@ -15,6 +21,8 @@ class BookInstanceAdmin(admin.ModelAdmin):
         ('General', {'fields': ('uuid', 'book')}),
         ('Availability', {'fields': ('status', 'due_back')}),
     )
+
+
 
 # Register your models here.
 admin.site.register(models.Author)
