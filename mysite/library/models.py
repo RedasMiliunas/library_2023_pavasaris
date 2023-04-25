@@ -7,6 +7,7 @@ class Genre(models.Model):
     name = models.CharField(verbose_name="Pavadinimas", max_length=50,
                             help_text="Iveskite knygos zanra (pvz.: Detektyvas)")
 
+
     def __str__(self):
         return self.name
 
@@ -34,6 +35,10 @@ class Book(models.Model):
     author = models.ForeignKey(to="Author", verbose_name="Autorius", on_delete=models.SET_NULL, null=True)
     genre = models.ManyToManyField(to="Genre", verbose_name="Zanras")
 
+    def display_genre(self):
+        return ', '.join(genre.name for genre in self.genre.all())
+
+    display_genre.short_description = 'Zanrai'      # panasu i Meta
 
     def __str__(self):
         return f'{self.title} ({self.author})'
