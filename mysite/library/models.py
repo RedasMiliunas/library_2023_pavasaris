@@ -20,6 +20,9 @@ class Author(models.Model):
     first_name = models.CharField(verbose_name="Vardas", max_length=50)
     last_name = models.CharField(verbose_name="Pavarde", max_length=50)
 
+    def display_books(self):
+        return ', '.join(book.title for book in self.books.all())
+
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
@@ -32,7 +35,8 @@ class Book(models.Model):
     summary = models.TextField(verbose_name="Aprasymas", max_length=2000)
     isbn = models.CharField(verbose_name="ISBN", max_length=13)
     # author = models.ForeignKey(to="Author", verbose_name="Autorius", on_delete=models.CASCADE)
-    author = models.ForeignKey(to="Author", verbose_name="Autorius", on_delete=models.SET_NULL, null=True)
+    # author = models.ForeignKey(to="Author", verbose_name="Autorius", on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(to="Author", verbose_name="Autorius", on_delete=models.SET_NULL, null=True, related_name='books')
     genre = models.ManyToManyField(to="Genre", verbose_name="Zanras")
 
     def display_genre(self):
