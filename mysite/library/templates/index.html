@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 
-{% block "title" %}HOME{% endblock%}
+{% block "title" %}HOMEPAGE{% endblock%}
 
 {% block "content" %}
 
-<h1>VEIKIA!</h1>
-
+<h1>Sveiki atvyke i knygu roju!</h1>
+<p>Siuo metu turime:</p>
+<ul>
+    <li><strong>Knygu: </strong> {{ num_books }}</li>
+    <li><strong>Egzemplioriu: </strong> {{ num_instances }}</li>
+    <li><strong>Autoriu: </strong> {{ num_authors }}</li>
+    <li><strong>Laisvu knygu: </strong> {{ num_instances_available }}</li>
+</ul>
 
 {% endblock%}
