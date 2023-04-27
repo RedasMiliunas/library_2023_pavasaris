@@ -10,5 +10,12 @@
 
 </ul>
 <p>{{ author.description }}</p>
+<h2>Turime sias autoriaus knygas:</h2>
+
+<ol>
+  {% for book in author.books.all %}
+  <li>{{ book.title }}</li>
+  {% endfor%}
+</ol>
 
 {% endblock%}

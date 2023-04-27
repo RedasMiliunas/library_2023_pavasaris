@@ -42,8 +42,8 @@ def authors(request):
     return render(request, 'authors.html', context=context)
 
 def author(request, author_id):
-    author = get_object_or_404(Author, pk=author_id)
-    # print(author)         atspausdina consolej pycharm
+    author = get_object_or_404(Author, pk=author_id)        # pk = primarykey
+    # print(author)         atspausdina consolej pycharm - pasitikrinimui ar veikia
 
     context = {
         'author': author
