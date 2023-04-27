@@ -19,6 +19,7 @@ class Genre(models.Model):
 class Author(models.Model):
     first_name = models.CharField(verbose_name="Vardas", max_length=50)
     last_name = models.CharField(verbose_name="Pavarde", max_length=50)
+    description = models.TextField(verbose_name='Aprasymas', max_length=2000, default="")
 
     def display_books(self):
         return ', '.join(book.title for book in self.books.all())
