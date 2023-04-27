@@ -5,9 +5,11 @@
 {% block "content" %}
 
 {% for author in authors %}
-
-<p>{{ author }}</p>
 <hr>
-{% endfor%}
+<a href="{% url 'author' author.id %}">
+<p>{{ author }}</p>
+    </a>
 
+{% endfor%}
+<hr>
 {% endblock%}
