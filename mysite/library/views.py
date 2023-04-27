@@ -26,4 +26,17 @@ def index(request):
 
     return render(request, 'index.html', context=context)
 
-# dabar frontend'as:
+# dabar frontend'as.
+
+# django V - views.
+# Views: gali buti function-base (kaip virsuje) arba
+# class-base (daugiau django pasirinkimas - supaprastina darba): kuriam funkcija arba klase views.py faile!!
+# galim juos miksuoti, taikyti pagal tai kas patogiau kuriam veiksmui atlikti.
+# class-base: jeigu lendam giliau, reikia kazka keisti, tuomet reikes daryti komplikuociau - daryti overwrite'us klases metodams ir pan.
+
+def authors(request):
+    authors = Author.objects.all()
+    context = {
+        'authors': authors,
+    }
+    return render(request, 'authors.html', context=context)
