@@ -6,9 +6,9 @@
 
 {% for book in books %}
 <hr>
-
+<a href="{% url 'book' book.pk %}">
 <p>{{ book }}</p>
-
+</a>
 
 {% endfor%}
 <hr>

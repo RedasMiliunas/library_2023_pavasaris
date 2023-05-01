@@ -57,3 +57,9 @@ class BookListView(generic.ListView):
     context_object_name = "books"       #sitas nera butinas - sugeneruos auto pavadinima
     template_name = "books.html"        # irgi generuoja auto, bet del aiskumo isivedam taip - geriau!
 
+# papildomas parametras 'queryset' - pasiziureti mokymo medziagoje! (CBV - class-based view)
+
+class BookDetailView(generic.DetailView):
+    model = Book
+    context_object_name = "book"
+    template_name = "book.html"
