@@ -56,6 +56,7 @@ class BookListView(generic.ListView):
     model = Book
     context_object_name = "books"       #sitas nera butinas - sugeneruos auto pavadinima
     template_name = "books.html"        # irgi generuoja auto, bet del aiskumo isivedam taip - geriau!
+    paginate_by = 3                     # puslapiuojam!
 
 # papildomas parametras 'queryset' - pasiziureti mokymo medziagoje! (CBV - class-based view)
 
