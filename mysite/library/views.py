@@ -4,6 +4,9 @@ from django.http import HttpResponse
 from .models import Book, BookInstance, Author
 from django.views import generic
 
+#kad per funkcija padaryti puslapiavima:
+from django.core.paginator import Paginator
+
 # Create your views here.
 
 # cia backendo darbas
@@ -36,7 +39,11 @@ def index(request):
 # class-base: jeigu lendam giliau, reikia kazka keisti, tuomet reikes daryti komplikuociau - daryti overwrite'us klases metodams ir pan.
 
 def authors(request):
-    authors = Author.objects.all()
+    paginator = Paginator(Author.objects.all(), 3)
+    page_number = request.GET.get('page')
+    paged_authors = paginator.get_page(page_number)
+    authors = paged_authors
+    # authors = Author.objects.all()
     context = {
         'authors': authors,
     }
