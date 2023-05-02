@@ -6,6 +6,8 @@ from django.views import generic
 
 #kad per funkcija padaryti puslapiavima:
 from django.core.paginator import Paginator
+#pridedant paieska (search lauka)
+from django.db.models import Q
 
 # Create your views here.
 
@@ -57,6 +59,16 @@ def author(request, author_id):
         'author': author
     }
     return render(request, 'author.html', context=context)
+
+#search view'as:
+def search(request):
+    query = request.GET.get('query')
+    search_results = Book.objects.filter(Q(title__icontains=query) | Q(summary__icontains=query) | Q(author__first_name__icontains=query) | Q(author__last_name__icontains=query))
+    context = {
+        'books': search_results,
+        'query': query,
+    }
+    return render(request, 'search.html', context=context)
 
 # class-base view:
 class BookListView(generic.ListView):
