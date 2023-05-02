@@ -3,11 +3,20 @@
 {% block "title" %}Knyga{% endblock%}
 
 {% block "content" %}
+{% load static %}
+{% if book.cover %}
+<div>
+    <img src="{{ book.cover.url }}" class="max-width: 50%" alt="...">
+    {% else %}
+    <img src="{% static 'img/no-image.png' %}" class="max-width: 50%">
+    {% endif %}
+</div>
+<br>
 <h1>{{ book.title }}</h1>
 <ul>
-  <li><strong>Autorius: </strong> {{ book.author }}</li>
-  <li><strong>Zanras: </strong> {{ book.display_genre }}</li>
-  <li><strong>ISBN: </strong> {{ book.isbn }}</li>
+    <li><strong>Autorius: </strong> {{ book.author }}</li>
+    <li><strong>Zanras: </strong> {{ book.display_genre }}</li>
+    <li><strong>ISBN: </strong> {{ book.isbn }}</li>
 
 
 </ul>
@@ -15,17 +24,17 @@
 <h2>Knygos egzemplioriai:</h2>
 
 <ol>
-  {% for instance in book.instances.all %}
-  <hr>
-      <p class="{% if instance.status == 'g' %}text-success{% elif instance.status == 'p' %}text-danger{% else %}text-warning{% endif %}">
+    {% for instance in book.instances.all %}
+    <hr>
+    <p class="{% if instance.status == 'g' %}text-success{% elif instance.status == 'p' %}text-danger{% else %}text-warning{% endif %}">
         {{ instance.get_status_display }}
-      </p>
-      {% if instance.status != 'a' %}
-        <p><strong>Bus grąžinta:</strong> {{ instance.due_back }}</p>
-      {% endif %}
-      <p class="text-muted"><strong>Id:</strong> {{ instance.uuid }}</p>
+    </p>
+    {% if instance.status != 'a' %}
+    <p><strong>Bus grąžinta:</strong> {{ instance.due_back }}</p>
+    {% endif %}
+    <p class="text-muted"><strong>Id:</strong> {{ instance.uuid }}</p>
 
-  {% endfor%}
+    {% endfor%}
 </ol>
 
 {% endblock%}
