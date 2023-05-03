@@ -41,7 +41,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'library',
+    'library',                  # !SITAS TURI BUTI VIRS VISU KITU!!!!!SVARBU!
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
