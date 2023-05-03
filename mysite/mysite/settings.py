@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from .my_settings import SECRET_KEY
+from .my_settings import SECRET_KEY, EMAIL_HOST, EMAIL_POST, EMAIL_BACKEND, EMAIL_HOST_PASSWORD, EMAIL_HOST_USER, EMAIL_USE_TLS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,6 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = SECRET_KEY
+
+EMAIL_BACKEND = EMAIL_BACKEND
+EMAIL_HOST = EMAIL_HOST
+EMAIL_POST = EMAIL_POST
+EMAIL_USE_TLS = EMAIL_USE_TLS
+EMAIL_HOST_USER = EMAIL_HOST_USER
+# el. pašto adresas iš kurio siųsite
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+# slaptažodis
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
