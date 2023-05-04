@@ -18,9 +18,9 @@ class BookAdmin(admin.ModelAdmin):
     search_fields = ['title', 'author__first_name', 'author__last_name']       #ivedam search lauka, __ jeigu norim pasiekti toliau esancius elementus
 
 class BookInstanceAdmin(admin.ModelAdmin):
-    list_display = ['uuid', 'book', 'status', 'due_back']
+    list_display = ['uuid', 'book', 'status', 'due_back', 'due_back']
     list_filter = ['status', 'due_back', 'book']
-    list_editable = ['status', 'due_back']      #jeigu norim padaryti, kad toj pacioj vietoj
+    list_editable = ['status', 'due_back', 'due_back']      #jeigu norim padaryti, kad toj pacioj vietoj
                         # galetumem redaguoti iskart, nereiketu eiti atskirai i BookInstance
     search_fields = ['uuid', 'book__title']     #galim ideti search'a pagal ka norim, ka galim pasiekti
     #nustatom filtra
