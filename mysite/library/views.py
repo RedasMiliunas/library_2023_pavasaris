@@ -87,3 +87,18 @@ class BookDetailView(generic.DetailView):
     model = Book
     context_object_name = "book"
     template_name = "book.html"
+
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+class MyBooksByUserListView(LoginRequiredMixin, generic.ListView):
+    model = BookInstance
+    context_object_name = 'my_books'
+    template_name = 'my_books.html'
+
+    # paginate_by = 10
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(reader=self.request.user)\
+            # .filter(status__exact='p').order_by('due_back')
