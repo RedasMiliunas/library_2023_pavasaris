@@ -23,7 +23,7 @@ class BookInstanceAdmin(admin.ModelAdmin):
     list_editable = ['status', 'due_back', 'reader']      #jeigu norim padaryti, kad toj pacioj vietoj
                         # galetumem redaguoti iskart, nereiketu eiti atskirai i BookInstance
     search_fields = ['uuid', 'book__title']     #galim ideti search'a pagal ka norim, ka galim pasiekti
-    #nustatom filtra
+    #nustatom filtra kaip bus atvaizduota i kokius 'paragrafus' itraukta
     # fieldsets = (
     #     ('General', {'fields': ('uuid', 'book')}),
     #     ('Availability', {'fields': ('status', 'due_back')}),

@@ -7,7 +7,7 @@
 <h1>Paimtos knygos:</h1>
 <hr>
 {% for book in my_books %}
-<p class="{% if book.is_overdue %}text-danger{% endif %}">{{ book }}</p>
+<p><a>{{ book.book }}-{{ book.uuid }}</a><span class="{% if book.is_overdue %}text-danger{% endif %}"> ({{ book.due_back }})</span></p>
 <hr>
 {% endfor %}
 

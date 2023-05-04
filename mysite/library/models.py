@@ -67,7 +67,7 @@ class BookInstance(models.Model):
         ('g', 'Galima paimti'),
         ('r', 'Rezervuota')
     )
-
+    # gauti reiksme veliau (order/vehicle/etc.get_status_display)
     status = models.CharField(verbose_name="Busena", max_length=1, choices=LOAN_STATUS, blank=True, default='a')
 
     def is_overdue(self):
