@@ -4,9 +4,10 @@
 
 {% block "content" %}
 
-<h1>Mano knygos:</h1>
+<h1>Paimtos knygos:</h1>
+<hr>
 {% for book in my_books %}
-<p>{{ book }}</p>
+<p class="{% if book.is_overdue %}text-danger{% endif %}">{{ book }}</p>
 <hr>
 {% endfor %}
 
