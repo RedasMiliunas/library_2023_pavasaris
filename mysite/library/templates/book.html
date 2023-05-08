@@ -21,6 +21,16 @@
 
 </ul>
 <p>{{ book.summary }}</p>
+<h2>Atiliepimai:</h2>
+{% if book.reviews.all %}
+{% for review in book.reviews.all %}
+<hr>
+<strong>{{ review.reviewer }}</strong>, <em>{{ review.date_created }}</em>
+<p>{{ review.content }}</p>
+{% endfor %}
+{% else %}
+<p>Knyga neturi atsiliepimu</p>
+{% endif %}
 <h2>Knygos egzemplioriai:</h2>
 
 <ol>
