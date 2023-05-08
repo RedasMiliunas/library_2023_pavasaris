@@ -22,6 +22,17 @@
 </ul>
 <p>{{ book.summary }}</p>
 <h2>Atiliepimai:</h2>
+{% if user.is_authenticated %}
+<div class="fieldWrapper">
+    <hr><br/>
+    <h4>Palikite atsiliepimą:</h4>
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ form.content }}</br>
+      <input type="submit" value="Komentuoti">
+    </form>
+  </div>
+{% endif %}
 {% if book.reviews.all %}
 {% for review in book.reviews.all %}
 <hr>
