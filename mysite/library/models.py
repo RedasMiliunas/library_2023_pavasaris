@@ -83,3 +83,15 @@ class BookInstance(models.Model):
     class Meta:
         verbose_name = "Knygos egzempliorius"
         verbose_name_plural = "Knygos egzemplioriai"
+
+
+class BookReview(models.Model):
+    book = models.ForeignKey(to='Book', verbose_name='Knyga', on_delete=models.SET_NULL, null=True, blank=True)
+    reviewer = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=True)
+    date_created = models.DateTimeField(verbose_name='Data', auto_now_add=True)
+    content = models.TextField(verbose_name='Atsiliepimas', max_length=3000)
+
+    class Meta:
+        verbose_name = 'Atsiliepimas'
+        verbose_name_plural = 'Atsiliepimai'
+        ordering = ['-date_created']
