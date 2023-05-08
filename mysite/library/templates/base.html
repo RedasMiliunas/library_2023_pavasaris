@@ -81,7 +81,17 @@ Cia yra pagrindinis programos HTML sablonas, sukurtas panaudojant Bootstrap 5
 <!--  <li><a href="">Visi autoriai</a></li>-->
 <!--</ul>-->
 {% endcomment%}
-
+<div class="container">
+    <br>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% elif message.tags == 'info' %}success{% endif %}" role="alert">
+                {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+  </div>
+<br>
 <div class="container">
   {% block "content" %}{% endblock%}
 </div>

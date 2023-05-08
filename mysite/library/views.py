@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 
 from .models import Book, BookInstance, Author
@@ -105,9 +105,29 @@ class MyBookInstanceListView(LoginRequiredMixin, generic.ListView):
 
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
+from django.contrib.auth.models import User
+
 @csrf_protect
 def register(request):
     if request.method == 'POST':
-        pass
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['password2']
+        if password == password2:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, f'Vartotojo vardas {username} uzimtas!')
+                return redirect('register')
+            else:
+                if User.objects.filter(email=email).exists():
+                    messages.error(request, f'Vartotojas su el. pastu {email} jau uzregistruotas!')
+                    return redirect('register')
+                else:
+                    User.objects.create_user(username=username, email=email, password=password)
+                    messages.info(request, f'Vartotojas {username} uzregistruotas!')
+                    return redirect('login')
+        else:
+            messages.error(request, f'Slaptazodziai nesutampa')
+            return redirect('register')
     else:
         return render(request, 'registration/register.html')
