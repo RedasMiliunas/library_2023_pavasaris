@@ -171,6 +171,7 @@ def profile(request):
             return redirect('profile')
         else:
             messages.error(request, f'Kazka blogai vedi...')
+
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
@@ -182,4 +183,64 @@ def profile(request):
 
     return render(request, 'profile.html', context=context)
 
+#pirmas bandymas:
+# def profile(request):
+#     if request.method == 'POST':
+#         username = request.POST['username']
+#         email = request.POST['email']
+#         if User.objects.filter(username=username).exists():
+#             messages.error(request, f'Vartotojo vardas {username} uzimtas!')
+#             return redirect('profile')
+#         else:
+#             if User.objects.filter(email=email).exists():
+#                 messages.error(request, f'Vartotojas su el. pastu {email} jau uzregistruotas!')
+#                 return redirect('profile')
+#             if request.method == 'POST':
+#
+#                 u_form = UserUpdateForm(request.POST, instance=request.user)
+#                 p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+#                 if u_form.is_valid() and p_form.is_valid():
+#                     u_form.save()
+#                     p_form.save()
+#                     messages.info(request, f'Profilis sekmingai atnaujintas!')
+#                     return redirect('profile')
+#
+#     else:
+#         u_form = UserUpdateForm(instance=request.user)
+#         p_form = ProfileUpdateForm(instance=request.user.profile)
+#
+#     context = {
+#         'u_form': u_form,
+#         'p_form': p_form,
+#     }
+#
+#     return render(request, 'profile.html', context=context)
+
+#antras bandymas:
+# def profile(request):
+#     if request.method == 'POST':
+#         username = request.POST['username']
+#         email = request.POST['email']
+#         if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
+#             messages.error(request, f'Vartotojo vardas {username} arba el. pastas {email} yra uzimtas!')
+#             return redirect('profile')
+#         else:
+#             u_form = UserUpdateForm(request.POST, instance=request.user)
+#             p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+#             if u_form.is_valid() and p_form.is_valid():
+#                 u_form.save()
+#                 p_form.save()
+#                 messages.info(request, f'Profilis sekmingai atnaujintas!')
+#                 return redirect('profile')
+#
+#     else:
+#         u_form = UserUpdateForm(instance=request.user)
+#         p_form = ProfileUpdateForm(instance=request.user.profile)
+#
+#     context = {
+#         'u_form': u_form,
+#         'p_form': p_form,
+#     }
+#
+#     return render(request, 'profile.html', context=context)
 
