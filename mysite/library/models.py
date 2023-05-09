@@ -96,6 +96,7 @@ class BookReview(models.Model):
         verbose_name_plural = 'Atsiliepimai'
         ordering = ['-date_created']
 
+from PIL import Image
 #One to One rysys:
 class Profile(models.Model):
     user = models.OneToOneField(to=User, on_delete=models.CASCADE)
@@ -107,3 +108,12 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'Profilis'
         verbose_name_plural = 'Profiliai'
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        img = Image.open(self.photo.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.photo.path)
+
