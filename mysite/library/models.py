@@ -95,3 +95,15 @@ class BookReview(models.Model):
         verbose_name = 'Atsiliepimas'
         verbose_name_plural = 'Atsiliepimai'
         ordering = ['-date_created']
+
+#One to One rysys:
+class Profile(models.Model):
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    photo = models.ImageField(verbose_name='Nuotrauka', upload_to='profile_pics', default='profile_pics/default.png')
+            #models.FileField (kad butu galima prisegti bet kokius failus, tame tarpe ir foto)
+    def __str__(self):
+        return f'{self.user.username} profilis'
+
+    class Meta:
+        verbose_name = 'Profilis'
+        verbose_name_plural = 'Profiliai'

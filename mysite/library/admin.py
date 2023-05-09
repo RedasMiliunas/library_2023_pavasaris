@@ -45,3 +45,4 @@ admin.site.register(models.Book, BookAdmin)     # cia turim uzregistruoti su kla
 # admin.site.register(models.BookInstance)
 admin.site.register(models.BookInstance, BookInstanceAdmin)
 admin.site.register(models.BookReview, BookReviewAdmin)
+admin.site.register(models.Profile)
