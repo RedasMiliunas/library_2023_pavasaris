@@ -158,6 +158,20 @@ def register(request):
         return render(request, 'registration/register.html')
 
 from django.contrib.auth.decorators import login_required
+from .forms import UserUpdateForm, ProfileUpdateForm
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    if request.method == 'POST':
+        pass
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form,
+    }
+
+    return render(request, 'profile.html', context=context)
+
+
