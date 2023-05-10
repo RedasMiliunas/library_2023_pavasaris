@@ -1,5 +1,5 @@
 from django import forms
-from .models import BookReview, Profile
+from .models import BookReview, Profile, BookInstance
 from django.contrib.auth.models import User
 
 
@@ -19,3 +19,17 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['photo']
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+# Dėmesio: jei lauke norite nustatyti DateTime lauką,
+# tai yra ir datą ir laiką, DateInput klasėje input_type reikšmę
+# pakeiskite iš 'date' į "datetime-local".
+
+class InstanceCreateForm(forms.ModelForm):
+    class Meta:
+        model = BookInstance
+        fields = ['book', 'due_back']
+        widgets = {'due_back': DateInput()}
