@@ -150,6 +150,20 @@ class BookInstanceCreatView(LoginRequiredMixin, generic.CreateView):
         form.instance.reader = self.request.user
         return super().form_valid(form)
 
+from django.contrib.auth.mixins import UserPassesTestMixin
+class BookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = BookInstance
+    fields = ['book', 'due_back']
+    success_url = '/instances'
+    template_name = 'instance_form.html'
+
+    def form_valid(self, form):
+        form.instance.reader = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        instance = self.get_object()
+        return instance.reader == self.request.user
 
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
