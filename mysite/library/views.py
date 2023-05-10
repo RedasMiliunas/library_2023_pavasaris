@@ -116,6 +116,17 @@ class BookDetailView(FormMixin, generic.DetailView):
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+class BookInstanceListView(LoginRequiredMixin, generic.ListView):
+    model = BookInstance
+    context_object_name = 'instances'
+    template_name = 'instances.html'
+
+
+class BookInstanceDetailView(LoginRequiredMixin, generic.DetailView):
+    model = BookInstance
+    context_object_name = 'instance'
+    template_name = 'instance.html'
+
 
 class MyBookInstanceListView(LoginRequiredMixin, generic.ListView):
     model = BookInstance
@@ -127,6 +138,7 @@ class MyBookInstanceListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         return BookInstance.objects.filter(reader=self.request.user)
             # .filter(status__exact='p').order_by('due_back')
+
 
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages

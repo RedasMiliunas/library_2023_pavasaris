@@ -7,9 +7,9 @@
 <h1>Paimtos knygos:</h1>
 <hr>
 {% for instance in my_books %}
-<p><a href="{% url 'book' instance.book.pk %}">{{ instance.book }}</a> - {{ instance.uuid }}<span class="{% if instance.is_overdue %}text-danger{% endif %}"> ({{ instance.due_back }}, {{ instance.get_status_display }})</span></p>
-<img class="rounded-circle" src="{{ instance.reader.profile.photo.url }}">
-<hr>
-{% endfor %}
+<p><a href="{{ instance.pk }}">{{ instance.book }}</a> - {{ instance.uuid }}<span class="{% if instance.is_overdue %}text-danger{% endif %}"> ({{ instance.due_back }}, {{ instance.get_status_display }})</span></p>
 
+<hr>
+
+{% endfor %}
 {% endblock%}

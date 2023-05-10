@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Mano Knyga{% endblock%}
+
+{% block "content" %}
+
+<h1>Paimta knyga:</h1>
+<hr>
+
+<p>{{ instance.book }} - {{ instance.uuid }}<span class="{% if instance.is_overdue %}text-danger{% endif %}"> ({{ instance.due_back }}, {{ instance.get_status_display }})</span></p>
+<img class="rounded-circle" src="{{ instance.reader.profile.photo.url }}">
+<p><strong>{{ instance.reader.username }}</strong></p>
+<hr>
+
+{% endblock%}
