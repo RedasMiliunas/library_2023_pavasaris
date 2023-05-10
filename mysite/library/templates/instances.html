@@ -12,6 +12,7 @@
 {% if instance.reader == user %}
 <div>
     <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'instance_update' instance.id %}">Redaguoti</a>
+    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'instance_delete' instance.id %}">Ištrinti</a>
 </div>
 {% endif %}
 <hr>

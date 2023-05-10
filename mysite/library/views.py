@@ -165,6 +165,18 @@ class BookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.Up
         instance = self.get_object()
         return instance.reader == self.request.user
 
+
+class BookInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = BookInstance
+    success_url = '/instances'
+    context_object_name = 'instance'
+    template_name = 'instance_delete.html'
+
+    def test_func(self):
+        instance = self.get_object()
+        return instance.reader == self.request.user
+
+
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.contrib.auth.models import User
