@@ -28,7 +28,7 @@ class DateInput(forms.DateInput):
 # tai yra ir datą ir laiką, DateInput klasėje input_type reikšmę
 # pakeiskite iš 'date' į "datetime-local".
 
-class InstanceCreateForm(forms.ModelForm):
+class InstanceCreateUpdateForm(forms.ModelForm):
     class Meta:
         model = BookInstance
         fields = ['book', 'due_back']

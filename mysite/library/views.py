@@ -84,7 +84,7 @@ class BookListView(generic.ListView):
 # papildomas parametras 'queryset' - pasiziureti mokymo medziagoje! (CBV - class-based view)
 
 from django.views.generic.edit import FormMixin
-from .forms import BookReviewForm, InstanceCreateForm
+from .forms import BookReviewForm, InstanceCreateUpdateForm
 
 class BookDetailView(FormMixin, generic.DetailView):
     model = Book
@@ -143,7 +143,7 @@ class BookInstanceDetailView(LoginRequiredMixin, generic.DetailView):
 class BookInstanceCreateView(LoginRequiredMixin, generic.CreateView):
     model = BookInstance
     # fields = ['book', 'due_back']
-    form_class = InstanceCreateForm
+    form_class = InstanceCreateUpdateForm
     success_url = '/instances'
     template_name = 'instance_form.html'
 
@@ -154,7 +154,8 @@ class BookInstanceCreateView(LoginRequiredMixin, generic.CreateView):
 from django.contrib.auth.mixins import UserPassesTestMixin
 class BookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = BookInstance
-    fields = ['book', 'due_back']
+    # fields = ['book', 'due_back']
+    form_class = InstanceCreateUpdateForm
     success_url = '/instances'
     template_name = 'instance_form.html'
 
