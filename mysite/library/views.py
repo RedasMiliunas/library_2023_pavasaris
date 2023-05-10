@@ -116,6 +116,18 @@ class BookDetailView(FormMixin, generic.DetailView):
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+class MyBookInstanceListView(LoginRequiredMixin, generic.ListView):
+    model = BookInstance
+    context_object_name = 'my_books'
+    template_name = 'my_books.html'
+
+    # paginate_by = 10
+    #filtruojam tik tas knygas, kuriu mums reikia (kuriu useris = self.request.user)
+    def get_queryset(self):
+        return BookInstance.objects.filter(reader=self.request.user)
+            # .filter(status__exact='p').order_by('due_back')
+
+
 class BookInstanceListView(LoginRequiredMixin, generic.ListView):
     model = BookInstance
     context_object_name = 'instances'
@@ -128,16 +140,15 @@ class BookInstanceDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = 'instance.html'
 
 
-class MyBookInstanceListView(LoginRequiredMixin, generic.ListView):
+class BookInstanceCreatView(LoginRequiredMixin, generic.CreateView):
     model = BookInstance
-    context_object_name = 'my_books'
-    template_name = 'my_books.html'
+    fields = ['book', 'due_back']
+    success_url = '/instances'
+    template_name = 'instance_form.html'
 
-    # paginate_by = 10
-    #filtruojam tik tas knygas, kuriu mums reikia (kuriu useris = self.request.user)
-    def get_queryset(self):
-        return BookInstance.objects.filter(reader=self.request.user)
-            # .filter(status__exact='p').order_by('due_back')
+    def form_valid(self, form):
+        form.instance.reader = self.request.user
+        return super().form_valid(form)
 
 
 from django.views.decorators.csrf import csrf_protect

@@ -8,7 +8,6 @@
 <hr>
 {% for instance in my_books %}
 <p><a href="{% url 'instance' instance.pk %}">{{ instance.book }}</a> - {{ instance.uuid }}<span class="{% if instance.is_overdue %}text-danger{% endif %}"> ({{ instance.due_back }}, {{ instance.get_status_display }})</span></p>
-
 <hr>
 
 {% endfor %}

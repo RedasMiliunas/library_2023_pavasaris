@@ -83,6 +83,7 @@ class BookInstance(models.Model):
     class Meta:
         verbose_name = "Knygos egzempliorius"
         verbose_name_plural = "Knygos egzemplioriai"
+        ordering = ['-id']
 
 
 class BookReview(models.Model):
