@@ -93,7 +93,7 @@ class BookDetailView(FormMixin, generic.DetailView):
     form_class = BookReviewForm
 
     def get_success_url(self):
-        return reverse('book', kwargs={'pk': self.object.id})
+        return reverse('book', kwargs={'pk': self.object.id}) #pasimeginti pakeisti i 'order.id'
 
     #Jo tiesiog reikia:
         # standartinis post metodo perrašymas, naudojant FormMixin, galite kopijuoti tiesiai į savo projektą.

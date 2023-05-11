@@ -121,6 +121,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'         #LANGUAGE_CODE = 'lt'  - viskas bus lietuviskai
 
+# LANGUAGE_CODE = 'lt'
+
 TIME_ZONE = 'UTC'               #TIME_ZONE = 'UTC+3'
 
 USE_I18N = True

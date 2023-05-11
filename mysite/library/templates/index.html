@@ -3,16 +3,16 @@
 {% block "title" %}HOMEPAGE{% endblock%}
 
 {% block "content" %}
-
-<h1>Sveiki atvyke i knygu roju!</h1>
-<p>Siuo metu turime:</p>
+{% load i18n %}
+<h1>{% trans "Welcome to my Library" %}</h1>
+<p>{% trans "Today we have:" %}</p>
 <ul>
-    <li><strong>Knygu: </strong> {{ num_books }}</li>
-    <li><strong>Egzemplioriu: </strong> {{ num_instances }}</li>
-    <li><strong>Autoriu: </strong> {{ num_authors }}</li>
-    <li><strong>Laisvu knygu: </strong> {{ num_instances_available }}</li>
+    <li><strong>{% trans "Books" %}: </strong> {{ num_books }}</li>
+    <li><strong>{% trans "Book Instances" %}: </strong> {{ num_instances }}</li>
+    <li><strong>{% trans "Authors" %}: </strong> {{ num_authors }}</li>
+    <li><strong>{% trans "Now Available" %}: </strong> {{ num_instances_available }}</li>
 </ul>
-<p>Cia jus lankotes {{ num_visits }} karta(-us)</p>
+<p>{% trans "Your visits:" %} {{ num_visits }}</p>
 {% endblock%}
 
 {% block "content2" %}
