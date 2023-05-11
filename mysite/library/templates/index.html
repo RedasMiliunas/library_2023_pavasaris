@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-
-{% block "title" %}HOMEPAGE{% endblock%}
+{% load i18n %}
+{% block "title" %}{% trans "HOMEPAGE" %}{% endblock%}
 
 {% block "content" %}
-{% load i18n %}
+
 <h1>{% trans "Welcome to my Library" %}</h1>
 <p>{% trans "Today we have:" %}</p>
 <ul>
