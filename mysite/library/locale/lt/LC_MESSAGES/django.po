@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-11 16:40+0300\n"
-"PO-Revision-Date: 2023-05-11 16:43+0300\n"
+"POT-Creation-Date: 2023-05-11 16:54+0300\n"
+"PO-Revision-Date: 2023-05-11 16:56+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt\n"
@@ -111,6 +111,11 @@ msgstr "Dabar turime"
 #: .\templates\index.html:15
 msgid "Your visits:"
 msgstr "Jūsų apsilankymai:"
+
+#: .\templates\index.html:16 .\templates\index.html:23
+#, python-format
+msgid "Your visits: %(num_visits)s"
+msgstr "Jūs apsilankėte %(num_visits)s -ą kartą"
 
 #: .\views.py:198
 #, python-format

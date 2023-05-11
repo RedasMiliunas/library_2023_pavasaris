@@ -13,10 +13,13 @@
     <li><strong>{% trans "Now Available" %}: </strong> {{ num_instances_available }}</li>
 </ul>
 <p>{% trans "Your visits:" %} {{ num_visits }}</p>
+<p>{% blocktrans %}Your visits: {{ num_visits }}{% endblocktrans %}</p>
 {% endblock%}
 
 {% block "content2" %}
 <h2>Sukurem antra bloka su norima informacija</h2>
 <p class="container">Stai cia yra Musu antras blokas!</p>
+
+<p>{% blocktrans %}Your visits: {{ num_visits }}{% endblocktrans %}</p>
 
 {% endblock%}
