@@ -9,6 +9,9 @@ from django.core.paginator import Paginator
 #pridedant paieska (search lauka)
 from django.db.models import Q
 
+from django.utils.translation import gettext as _
+
+
 # Create your views here.
 
 # cia backendo darbas
@@ -192,18 +195,18 @@ def register(request):
         password2 = request.POST['password2']
         if password == password2:
             if User.objects.filter(username=username).exists():
-                messages.error(request, f'Vartotojo vardas {username} uzimtas!')
+                messages.error(request, _('Username %s already exists!') % username)
                 return redirect('register')
             else:
                 if User.objects.filter(email=email).exists():
-                    messages.error(request, f'Vartotojas su el. pastu {email} jau uzregistruotas!')
+                    messages.error(request, _('Email %s already exists!') % email)
                     return redirect('register')
                 else:
                     User.objects.create_user(username=username, email=email, password=password)
-                    messages.info(request, f'Vartotojas {username} uzregistruotas!')
+                    messages.info(request, _('User %s successfully registered!') % username)
                     return redirect('login')
         else:
-            messages.error(request, f'Slaptazodziai nesutampa')
+            messages.error(request, _('Passwords do not match!'))
             return redirect('register')
     else:
         return render(request, 'registration/register.html')
